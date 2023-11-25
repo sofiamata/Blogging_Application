@@ -37,7 +37,6 @@ function addEntry(blog) {
   const blogContent = document.createElement('p');
   blogContainer.append(blogContent);
   
-  //PART 4
   if (blog.content.length > MAX_LENGTH){
     //substring of content
     const summary = blog.content.substring(0, MAX_LENGTH);
@@ -157,6 +156,5 @@ postsClass2.addEventListener('click', function(e){
       removeDots.className = 'dots';
       target.textContent = 'Read More';
     }
-
   }  
 });
