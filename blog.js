@@ -5,10 +5,10 @@ const MAX_LENGTH = 200;
 const blogs = [
   {title: 'HTML Semantic Tags',
    date: new Date(2022, 7, 31),
-   content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta cupiditate sint ullam fugiat fugit magni, aliquam quae voluptate, quo eos minima numquam repellendus rerum ipsa ea est. Maxime, dicta delectus eum a minus iure optio eveniet culpa, ipsum iste repellendus laudantium eos deserunt commodi animi distinctio ex hic? At amet dolore nemo accusamus nisi quae, ratione nam. Totam harum expedita temporibus dolore unde sed id debitis suscipit odio voluptates doloremque rem nobis aperiam quasi assumenda doloribus ad vero repellat, alias adipisci tenetur aspernatur vel. Culpa inventore architecto aspernatur dolor natus labore.'},
+   content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta cupiditate sint ullam fugiat fugit magni, aliquam quae voluptate, quo eos minima numquam repellendus rerum ipsa ea est. Maxime, dicta delectus eum a minus iure optio eveniet culpa, ipsum iste repellendus laudantium eos deserunt commodi animi distinctio ex hic? At amet dolore nemo accusamus nisi quae, ratione nam. Totam harum expedita temporibus dolore unde sed id debitis suscipit odio voluptates doloremque rem nobis aperiam quasi assumenda doloribus ad vero repellat, alias adipisci tenetur aspernatur vel. Culpa inventore architecto aspernatur dolor natus labore. '},
   {title: 'CSS Selectors',
   date: new Date(2022, 8, 9),
-  content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, dolore? Eveniet numquam quam qui quae laboriosam maxime deleniti aperiam quasi culpa veniam, voluptatibus molestias soluta error ratione assumenda sunt. Sapiente doloribus, nulla a tempora assumenda nostrum est enim corporis fugit quasi ipsam eveniet distinctio impedit dolorum eum dolor. Distinctio, reiciendis!'},
+  content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, dolore? Eveniet numquam quam qui quae laboriosam maxime deleniti aperiam quasi culpa veniam, voluptatibus molestias soluta error ratione assumenda sunt. Sapiente doloribus, nulla a tempora assumenda nostrum est enim corporis fugit quasi ipsam eveniet distinctio impedit dolorum eum dolor. Distinctio, reiciendis! '},
 
   {title: 'Cascading',
   date: new Date(2022, 8, 12),
@@ -44,6 +44,7 @@ function addEntry(blog) {
     blogContent.textContent = summary;
     //1st span element created
     const dots = document.createElement('span');
+    dots.classList.add('dots');   
     dots.textContent = '...';
     blogContent.appendChild(dots);
 
@@ -72,7 +73,7 @@ function addEntry(blog) {
   document.querySelector('.posts').append(blogContainer);
 }
 
-//PART 1 HIDE/SHOW NEW FORM
+//HIDE/SHOW NEW FORM
 //grabbing the .new-btn class
 const blogForm = document.querySelector('.new-btn');
 blogForm.addEventListener('click', function(event){
@@ -83,7 +84,7 @@ blogForm.addEventListener('click', function(event){
     newSectionClass.classList.toggle('hide');
 });
 
-//PART 2 DELETE A BLOG ENTRY
+//DELETE A BLOG ENTRY
 //grabbing the .posts class
 const postsClass = document.querySelector('.posts');
 
@@ -107,7 +108,7 @@ postsClass.addEventListener('click', function(e){
   }
 });
 
-//PART 3 DELETE A BLOG ENTRY
+//DELETE A BLOG ENTRY
 //grabbing the #submit-btn element
 const submitButton = document.querySelector('#submit-btn');
 
@@ -138,7 +139,6 @@ submitButton.addEventListener('click', function(e){
     }
 });
 
-//PART 4 
 //grabbing the .posts class
 const postsClass2 = document.querySelector('.posts');
 
@@ -147,15 +147,14 @@ postsClass2.addEventListener('click', function(e){
   // check if the event is a more-less-btn button
   if (target.classList.contains('more-less-btn')){
     const pElement = target.previousElementSibling;
-    const spanElements = pElement.querySelectorAll('span.hide');
-                                                                  
-    spanElements.forEach(function(span) {
-      span.classList.toggle('hide');
-    });
+    const removeDots = target.previousElementSibling.previousElementSibling;
+    pElement.classList.toggle('hide');
                                                                   
     if (target.textContent === 'Read More') {
+      removeDots.className = 'hide';
       target.textContent = 'Read Less';
     } else {
+      removeDots.className = 'dots';
       target.textContent = 'Read More';
     }
 
